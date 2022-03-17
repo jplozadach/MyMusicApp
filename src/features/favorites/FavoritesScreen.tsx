@@ -11,7 +11,7 @@ const FavoritesScreen = () => {
       {songsList
         .filter(item => item.favorite === true)
         .map(item => {
-          return <Text>{item.title}</Text>;
+          return <Text key={item.id}>{item.title}</Text>;
         })}
     </View>
   );

@@ -1,32 +1,12 @@
-import React, {useState} from 'react';
+import React from 'react';
 import RootNavigator from '~navigation/RootNavigator';
 import {MusicContext} from '~state/MusicContext';
-
-type Song = {
-  title: String;
-  favorite: Boolean;
-};
+import {AppState} from './App.state';
 
 const App = () => {
-  const [isAuthenticated, setisAuthenticated] = useState(false);
-  var songsList: Song[] = [
-    {title: 'Song A', favorite: true},
-    {title: 'Song B', favorite: false},
-    {title: 'Song C', favorite: true},
-  ];
-
+  const state = AppState().value;
   return (
-    <MusicContext.Provider
-      value={{
-        songsList,
-        isAuthenticated,
-        login: () => {
-          setisAuthenticated(true);
-        },
-        logout: () => {
-          setisAuthenticated(false);
-        },
-      }}>
+    <MusicContext.Provider value={state}>
       <RootNavigator />
     </MusicContext.Provider>
   );

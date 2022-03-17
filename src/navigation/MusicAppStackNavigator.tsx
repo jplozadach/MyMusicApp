@@ -5,11 +5,16 @@ import HomeScreen from '~features/home/HomeScreen';
 import LoginScreen from '~features/login/LoginScreen';
 import SongScreen from '~features/song/SongScreen';
 import {MusicContext} from '~state/MusicContext';
-
-const Stack = createNativeStackNavigator();
+import LoadingScreen from './LoadingScreen';
+import RootStackParamsList from './RootStackParamsList';
+const Stack = createNativeStackNavigator<RootStackParamsList>();
 
 export default function MusicAppStackNavigator() {
-  const {isAuthenticated} = useContext(MusicContext);
+  const {isAuthenticated, isLoading} = useContext(MusicContext);
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Stack.Navigator>
